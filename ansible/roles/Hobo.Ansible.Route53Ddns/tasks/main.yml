@@ -1,0 +1,64 @@
+---
+- name: Set facts
+  set_fact:
+    ddns_container: "{{ ddns_container_registry }}/{{ ddns_container_name }}:{{ ddns_container_tag }}"
+    ddns_login_required: >-
+      {% if ddns_container_registry_username is defined and ddns_container_registry_password is defined -%}
+      {{ true }}
+      {%- else -%}
+      {{ false }}
+      {%- endif %}
+
+- name: Ensure config directory
+  become: yes
+  file:
+    path: "{{ ddns_config_dir }}"
+    state: directory
+    owner: root
+    group: root
+    mode: "2660"
+
+- name: Template config files
+  become: yes
+  template:
+    src: "{{ item.src }}"
+    dest: "{{ item.dest }}"
+  with_items:
+    - { src: "templates/.env.j2",                 dest: "{{ ddns_config_dir }}/.env" }
+    - { src: "templates/route53-ddns.service.j2", dest: "/etc/systemd/system/route53-ddns.service"}
+  notify:
+    - Reload route53-ddns service
+
+- when: ddns_login_required
+  block:
+    - name: Ensure registry token file
+      become: yes
+      copy:
+        dest: "{{ ddns_config_dir }}/.registry_token"
+        content: "{{ ddns_container_registry_password }}"
+        owner: root
+        group: root
+        mode: "660"
+
+    - name: Ensure registry login script
+      become: yes
+      template:
+        src: templates/docker_login.sh.j2
+        dest: "{{ ddns_config_dir }}/docker_login.sh"
+        owner: root
+        group: root
+        mode: "775"
+
+    - name: Docker login
+      docker_login:
+        registry: "{{ ddns_container_registry }}"
+        username: "{{ ddns_container_registry_username }}"
+        password: "{{ ddns_container_registry_password }}"
+
+- name: Pull container image
+  docker_image:
+    name: "{{ ddns_container }}"
+    source: pull
+    force_source: "{{ ddns_container_force_pull }}"
+  notify:
+    - Reload route53-ddns service

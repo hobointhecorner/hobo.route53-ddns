@@ -1,0 +1,20 @@
+[submodule "Hobo.Route53DDNS/modules/Hobo.Pref"]
+	path = Hobo.Route53DDNS/modules/Hobo.Pref
+	url = git@github.com:hobointhecorner/Hobo.Pref.git
+	branch = v1
+[submodule "Hobo.Route53DDNS/modules/Hobo.BackgroundJob"]
+	path = Hobo.Route53DDNS/modules/Hobo.BackgroundJob
+	url = git@github.com:hobointhecorner/Hobo.BackgroundJob.git
+	branch = v1
+[submodule "Hobo.Route53DDNS/modules/Hobo.Log"]
+	path = Hobo.Route53DDNS/modules/Hobo.Log
+	url = git@github.com:hobointhecorner/Hobo.Log.git
+	branch = v1
+[submodule "ansible/roles/Hobo.Ansible.Common"]
+	path = ansible/roles/Hobo.Ansible.Common
+	url = git@github.com:hobointhecorner/Hobo.Ansible.Common.git
+	branch = v1
+[submodule "ansible/roles/Hobo.Ansible.Docker"]
+	path = ansible/roles/Hobo.Ansible.Docker
+	url = git@github.com:hobointhecorner/Hobo.Ansible.Docker.git
+	branch = v1

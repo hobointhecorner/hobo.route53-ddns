@@ -1,0 +1,6 @@
+---
+- hosts: all
+  vars:
+    upgrade_software: false
+  roles:
+    - role: Hobo.Ansible.Route53Ddns

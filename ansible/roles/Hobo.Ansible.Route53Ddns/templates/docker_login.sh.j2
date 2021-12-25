@@ -1,0 +1,3 @@
+#!/bin/bash
+
+cat {{ ddns_config_dir }}/.registry_token | docker login {{ ddns_container_registry }} -u {{ ddns_container_registry_username }} --password-stdin
