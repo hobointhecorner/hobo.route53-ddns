@@ -10,7 +10,7 @@ Restart=always
 ExecStartPre=-{{ ddns_config_dir }}/docker_login.sh
 {% endif %}
 ExecStart=/usr/bin/docker run --pull always --rm --env-file {{ ddns_config_dir }}/.env --name route53-ddns {{ ddns_container }} Update-Route53Ddns -Quiet -Wait {{ ddns_additional_parameters|join(' ') }}
-ExecStop=-/usr/bin/docker stop powermanager
+ExecStop=-/usr/bin/docker stop route53-ddns
 
 [Install]
 WantedBy=multi-user.target
