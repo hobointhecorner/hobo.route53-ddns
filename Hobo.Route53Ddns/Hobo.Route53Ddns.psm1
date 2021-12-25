@@ -455,13 +455,8 @@ function Update-Route53Ddns
 {
     [cmdletbinding()]
     param(
-        [parameter(Mandatory)]
         [string[]]$Zone,
-
-        [parameter(Mandatory)]
         [string[]]$RecordName,
-
-        [ValidateNotNullOrEmpty()]
         [int]$TtlSec,
 
         [switch]$Quiet,
