@@ -1,3 +1,0 @@
----
-dependencies:
-  - role: Hobo.Ansible.Docker

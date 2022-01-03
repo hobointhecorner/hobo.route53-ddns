@@ -3,4 +3,6 @@
   vars:
     upgrade_software: false
   roles:
+    - role: Hobo.Ansible.Common
+    - role: Hobo.Ansible.Docker
     - role: Hobo.Ansible.Route53Ddns
