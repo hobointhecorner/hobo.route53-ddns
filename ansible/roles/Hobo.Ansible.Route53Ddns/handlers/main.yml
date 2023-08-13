@@ -1,8 +1,0 @@
----
-- name: Reload route53-ddns service
-  become: yes
-  systemd:
-    name: route53-ddns
-    enabled: yes
-    daemon_reload: yes
-    state: restarted

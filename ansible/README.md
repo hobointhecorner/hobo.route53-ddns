@@ -30,7 +30,7 @@ all:
 | ddns_access_key                  | true     | string       |         | Access Key ID to use for AWS authentication | [Authentication](../Hobo.Route53Ddns/AUTH.md#environment-variables) |
 | ddns_access_secret               | true     | string       |         | Secret Access Key to use for AWS authentication | [Authentication](../Hobo.Route53Ddns/AUTH.md#environment-variables) |
 | ddns_additional_parameters       | false    | list(string) |         | Any additional command-line parameters to pass to the `Update-Route53Ddns` cmdlet | [Script Behavior](../Hobo.Route53Ddns/CONFIG.md#script-behavior) |
-| ddns_config_dir                  | false    | string       | /opt/route53-ddns | Destination directory for config files | |
+| ddns_config_dir                 | false    | string       | /srv/route53-ddns | Destination directory for config files | |
 | ddns_container_registry          | false    | string       | ghcr.io | The container registry from which to pull the route53-ddns container | |
 | ddns_container_name              | false    | string       | hobointhecorner/Hobo.Route53Ddns | The name of the route53-ddns container to pull | |
 | ddns_container_tag               | false    | string       | stable  | The tag of the container to pull. Can be `latest`, `stable`, or any tagged version | |
