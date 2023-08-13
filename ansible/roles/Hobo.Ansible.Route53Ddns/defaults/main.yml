@@ -1,8 +1,0 @@
----
-ddns_config_dir: /opt/route53-ddns
-ddns_container_registry: ghcr.io
-ddns_container_name: hobointhecorner/hobo.route53-ddns
-ddns_container_tag: stable
-ddns_container_force_pull: no
-ddns_additional_parameters: []
-ddns_ttl_sec: 21600
